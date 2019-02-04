@@ -1,12 +1,8 @@
-language: generic
-
-install:
-  - gem install bundler jekyll
-
-./terraform-linux init
-./terraform-linux validate
-
-if [[ $TRAVIS_BRANCH == 'master' ]]
-then
+jobs:
+  include:
+    ./terraform init
+    ./terraform validate
+    if [[ $TRAVIS_BRANCH == 'master' ]]
+    then
     ./terraform-linux plan
-fi
+    fi
