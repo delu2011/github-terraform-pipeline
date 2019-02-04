@@ -3,5 +3,10 @@ language: generic
 install:
   - gem install bundler jekyll
 
-script:
-  - ./build.sh
+./terraform-linux init
+./terraform-linux validate
+
+if [[ $TRAVIS_BRANCH == 'master' ]]
+then
+    ./terraform-linux plan
+fi
