@@ -1,8 +1,25 @@
-jobs:
-  include:
-    ./terraform init
-    ./terraform validate
-    if [[ $TRAVIS_BRANCH == 'master' ]]
-    then
-    ./terraform-linux plan
-    fi
+dist trusty
+sudo: false
+
+branches:
+  only:
+    - master
+
+env:
+  - TF_INPUT=false
+
+before_install:
+  - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip
+  - unzip /tmp/terraform.zip -d /tmp
+  - mkdir ~/bin
+  - mv /tmp/terraform ~/bin
+  - export PATH="~/bin:$PATH"
+
+script: terraform plan ./terraform
+
+deploy
+- provider: script
+  skip_cleanup true
+  script: terraform apply ./terraform
+  on:
+    branch: master
