@@ -26,7 +26,6 @@ variable "region-ami-map" {
         "ap-northeast-1" = "ami-ea4eae8c"
         "ap-northeast-2" = "ami-d28a53bc"
         "ap-south-1" = "ami-099fe766"
-        "sa-east-1" = "ami-10186f7c"
     }
 }
 
