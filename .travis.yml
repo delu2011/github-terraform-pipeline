@@ -1,0 +1,7 @@
+language: generic
+
+install:
+  - gem install bundler jekyll
+
+script:
+  - ./build.sh
