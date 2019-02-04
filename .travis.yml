@@ -14,12 +14,14 @@ before_install:
   - mkdir ~/bin
   - mv /tmp/terraform ~/bin
   - export PATH="~/bin:$PATH"
+  
+job:
+  include:
+    - script: terraform plan ./terraform
 
-script: terraform plan ./terraform
-
-deploy
-- provider: script
-  skip_cleanup flase
-  script: terraform apply ./terraform
-  on:
-    branch: master
+#deploy
+#- provider: script
+#  skip_cleanup flase
+#  script: terraform apply ./terraform
+#  on:
+#    branch: master
