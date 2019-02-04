@@ -19,7 +19,7 @@ script: terraform plan ./terraform
 
 deploy
 - provider: script
-  skip_cleanup true
+  skip_cleanup flase
   script: terraform apply ./terraform
   on:
     branch: master
